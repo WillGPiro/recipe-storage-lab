@@ -17,7 +17,12 @@ describe('Recipe model', () => {
         'mix ingredients',
         'put dough on cookie sheet',
         'bake for 10 minutes'
-      ]
+      ],
+      ingredients: [{
+        name: 'Salt',
+        amount: 5,
+        measurement: 'teaspoon',
+      }]
     });
 
     expect(recipe.toJSON()).toEqual({
@@ -28,7 +33,14 @@ describe('Recipe model', () => {
         'mix ingredients',
         'put dough on cookie sheet',
         'bake for 10 minutes'
-      ]
+      ],
+      ingredients: [{
+        amount: 5,
+        measurement: 'teaspoon',
+        name: 'Salt',
+        _id: expect.any(mongoose.Types.ObjectId)
+      }]
     });
   });
 });
+

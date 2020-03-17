@@ -29,7 +29,13 @@ describe('app routes', () => {
           'mix ingredients',
           'put dough on cookie sheet',
           'bake for 10 minutes'
-        ]
+        ],
+        ingredients: [{
+          amount: 5,
+          measurement: 'teaspoon',
+          name: 'Salt',
+
+        }]
       })
       .then(res => {
         expect(res.body).toEqual({
@@ -41,6 +47,12 @@ describe('app routes', () => {
             'put dough on cookie sheet',
             'bake for 10 minutes'
           ],
+          ingredients: [{
+            amount: 5,
+            measurement: 'teaspoon',
+            name: 'Salt',
+            _id: expect.any(String)
+          }],
           __v: 0
         });
       });
@@ -67,7 +79,13 @@ describe('app routes', () => {
 
   it('get a recipe by id', async() => {
     const recipe = await Recipe.create({ 
-      name: 'cookies', directions: [] });
+      name: 'cookies', directions: [],
+      ingredients: [{
+        amount: 5,
+        measurement: 'teaspoon',
+        name: 'Salt',
+      }]
+    });
     return request(app)
       .get(`/api/v1/recipes/${recipe._id}`)
       .then(res => {
@@ -75,6 +93,12 @@ describe('app routes', () => {
           _id: recipe._id.toString(),
           name: 'cookies',
           directions: [],
+          ingredients: [{
+            amount: 5,
+            measurement: 'teaspoon',
+            name: 'Salt',
+            _id: expect.any(String)
+          }],
           __v: 0
         });
       });
@@ -82,7 +106,12 @@ describe('app routes', () => {
 
   it('gets a recipie by id and deletes', async() => {
     const recipe = await Recipe.create({ 
-      name: 'cookies', directions: [] });
+      name: 'cookies', directions: [],
+      ingredients: [{
+        amount: 5,
+        measurement: 'teaspoon',
+        name: 'Salt',
+      }] });
     return request(app)
       .delete(`/api/v1/recipes/${recipe._id}`)
       .then(res => {
@@ -90,6 +119,12 @@ describe('app routes', () => {
           _id: recipe._id.toString(),
           name: 'cookies',
           directions: [],
+          ingredients: [{
+            amount: 5,
+            measurement: 'teaspoon',
+            name: 'Salt',
+            _id: expect.any(String)
+          }],
           __v: 0
         });
       });
@@ -104,6 +139,11 @@ describe('app routes', () => {
         'put dough on cookie sheet',
         'bake for 10 minutes'
       ],
+      ingredients: [{
+        amount: 5,
+        measurement: 'teaspoon',
+        name: 'Salt',
+      }]
     });
     
     return request(app)
@@ -119,6 +159,12 @@ describe('app routes', () => {
             'put dough on cookie sheet',
             'bake for 10 minutes'
           ],
+          ingredients: [{
+            amount: 5,
+            measurement: 'teaspoon',
+            name: 'Salt',
+            _id: expect.any(String)
+          }],
           __v: 0
         });
       });
